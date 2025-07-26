@@ -13,13 +13,18 @@ const mongoose = require("mongoose")
 const cookieParser = require("cookie-parser");
 const { checkForAuthenticationCookies } = require("./middleware/authentication");
 const setUser = require("./middleware/setUser"); // adjust the path
+const MongoStore = require("connect-mongo");
 
 app.use(express.static(path.resolve("./public")));
 
 app.use(session({
-    secret: "Vengeance",
-    resave: false,
-    saveUninitialized: false
+  secret: "Vengeance",
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    collectionName: "sessions"
+  })
 }));
 
 app.use(flash());
