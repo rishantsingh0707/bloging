@@ -16,7 +16,7 @@ const setUser = require("./middleware/setUser"); // adjust the path
 
 
 mongoose
-    .connect(process.env.MONGO_URL)
+    .connect(process.env.MONGO_URL,{ bufferCommands: false, serverSelectionTimeoutMS: 10000 })
     .then(() => { console.log("mongodb connected") });
 
 app.use(express.static(path.resolve("./public")));
@@ -34,6 +34,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookies("Token"));
 app.use(setUser);
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
+
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
