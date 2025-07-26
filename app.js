@@ -14,52 +14,71 @@ const cookieParser = require("cookie-parser");
 const { checkForAuthenticationCookies } = require("./middleware/authentication");
 const setUser = require("./middleware/setUser"); // adjust the path
 
-
-mongoose
-    .connect(process.env.MONGO_URL,{ bufferCommands: false, serverSelectionTimeoutMS: 10000 })
-    .then(() => { console.log("mongodb connected") });
-
 app.use(express.static(path.resolve("./public")));
 
 app.use(session({
-    secret: "Vengeance", 
+    secret: "Vengeance",
     resave: false,
     saveUninitialized: false
 }));
 
 app.use(flash());
 
-
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkForAuthenticationCookies("Token"));
 app.use(setUser);
 app.get('/favicon.ico', (req, res) => res.status(204).end());
-
-
-
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(methodOverride("_method"));
-app.get("/", async (req, res) => {
-    const blogs = await Blog.find().populate("createdBy").sort({ createdAt: -1 });
 
-    const error = req.flash("error");
-    const success = req.flash("success");
+async function startServer() {
+    try {
+        await mongoose.connect(process.env.MONGO_URL, {
+            bufferCommands: false,
+            serverSelectionTimeoutMS: 10000,
+        });
+        console.log("✅ MongoDB connected");
 
-    res.render("home", { blogs, error: error.length > 0 ? error : null ,success});
-});
+        // ✅ Now define your routes (AFTER connection)
+        app.get("/", async (req, res) => {
+            try {
+                const blogs = await Blog.find()
+                    .populate("createdBy")
+                    .sort({ createdAt: -1 });
 
+                const error = req.flash("error");
+                const success = req.flash("success");
 
-app.use("/user", userRoute)
+                res.render("home", {
+                    blogs,
+                    error: error.length > 0 ? error : null,
+                    success,
+                });
+            } catch (err) {
+                res.status(500).send("Error loading blogs");
+            }
+        });
 
-app.use("/blog", blogRoute)
+        app.use("/user", userRoute);
+        app.use("/blog", blogRoute);
 
-if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 8000;
-  app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-  });
+        // ✅ Start server only locally (not in Vercel)
+        if (process.env.NODE_ENV !== "production") {
+            const PORT = process.env.PORT || 8000;
+            app.listen(PORT, () => {
+                console.log(`🚀 Server started at http://localhost:${PORT}`);
+            });
+        }
+
+    } catch (err) {
+        console.error("❌ MongoDB connection failed:", err);
+    }
 }
+
+startServer();
+
+
 
 module.exports = app;
