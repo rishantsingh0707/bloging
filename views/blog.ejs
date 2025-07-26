@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <title>Blog</title>
+  <style>
+    /* 🌌 Background Wrapper with Gradient & Floating Circles */
+    .background-wrapper {
+      min-height: 100vh;
+      padding: 5rem 1rem 3rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #1a1a1a, #222, #1a1a1a, #000);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      z-index: 0;
+    }
+
+    /* 🌀 Floating Circles */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0, 123, 255, 0.35);
+      box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+      animation: floatAnim 12s linear infinite;
+      z-index: 0;
+    }
+
+    .circle1 { width: 150px; height: 150px; top: 10%; left: 10%; animation-delay: 0s; }
+    .circle2 { width: 100px; height: 100px; bottom: 15%; right: 15%; animation-delay: 2s; }
+    .circle3 { width: 120px; height: 120px; top: 40%; left: 60%; animation-delay: 4s; }
+
+    /* ✍️ Form Container */
+    .background-wrapper .container {
+      background-color: rgba(20, 20, 20, 0.95);
+      padding: 2rem;
+      border-radius: 14px;
+      color: #f0f0f0;
+      box-shadow: 0 0 25px rgba(1, 39, 255, 0.6);
+      position: relative;
+      z-index: 2;
+      animation: slideDown 1s ease forwards;
+    }
+
+    .form-heading {
+      font-size: 2.2rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      animation: slideDown 1.2s ease forwards;
+    }
+
+    .form-subtitle {
+      font-size: 1.1rem;
+      color: #cccccc;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 2s ease 0.5s forwards;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-control,
+    .form-body {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background-color: #1e1e1e;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus,
+    .form-body:focus {
+      outline: none;
+      border-color: #0d6efd;
+      box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+    }
+
+    .form-body {
+      min-height: 200px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      background-color: #0d6efd;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(13, 110, 253, 0.7);
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes floatAnim {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 0.3; }
+      100% { transform: translateY(0) rotate(360deg); opacity: 0.6; }
+    }
+
+    @media (max-width: 768px) {
+      .form-heading { font-size: 1.8rem; }
+      .background-wrapper .container { padding: 1.2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('./partials/nav') %>
+
+  <div class="background-wrapper">
+    <!-- ✨ Floating Circles -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <!-- 💬 Blog Form -->
+    <div class="container">
+      <h2 class="form-heading">📝 Create Your Magical Blog</h2>
+      <p class="form-subtitle">Share your thoughts, stories, and imagination with the world.</p>
+
+      <form action="/blog" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="coverImage">Cover Image</label>
+          <input type="file" class="form-control" id="coverImage" name="coverImage">
+        </div>
+
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Your blog title">
+        </div>
+
+        <div class="form-group">
+          <label for="body">Body</label>
+          <textarea name="body" class="form-body" id="body" placeholder="Write your blog..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <button class="btn-submit">🚀 Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('./partials/script') %>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+</head>
+<title>
+    SignIn
+</title>
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    nav.navbar {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* 🌌 Background Gradient + Layout */
+    .main-content {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        padding: 5rem 1rem 3rem;
+        background: linear-gradient(-45deg, #1a1a1a, #222, #1a1a1a, #000);
+        background-size: 400% 400%;
+        animation: gradientFlow 15s ease infinite;
+    }
+
+    /* 🔵 Floating Glowing Circles */
+    /* ✨ More Glowing Floating Circles */
+    .floating-bg .circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(0, 123, 255, 0.35);
+        /* brighter */
+        box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+        /* brighter glow */
+        animation: floatAnim 12s linear infinite;
+        z-index: 0;
+    }
+
+    /* 🎯 Each circle: size, position, and delay */
+    .circle1 {
+        width: 150px;
+        height: 150px;
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+
+    .circle2 {
+        width: 100px;
+        height: 100px;
+        bottom: 15%;
+        right: 15%;
+        animation-delay: 2s;
+    }
+
+    .circle3 {
+        width: 120px;
+        height: 120px;
+        top: 40%;
+        left: 60%;
+        animation-delay: 4s;
+    }
+
+    .circle4 {
+        width: 80px;
+        height: 80px;
+        bottom: 30%;
+        left: 25%;
+        animation-delay: 6s;
+    }
+
+    .circle5 {
+        width: 60px;
+        height: 60px;
+        top: 70%;
+        right: 30%;
+        animation-delay: 1s;
+    }
+
+    .circle6 {
+        width: 90px;
+        height: 90px;
+        bottom: 60%;
+        left: 5%;
+        animation-delay: 3s;
+    }
+
+    .circle7 {
+        width: 140px;
+        height: 140px;
+        top: 20%;
+        right: 20%;
+        animation-delay: 5s;
+    }
+
+    .circle8 {
+        width: 70px;
+        height: 70px;
+        bottom: 10%;
+        right: 5%;
+        animation-delay: 7s;
+    }
+
+    /* Reuse animation */
+    @keyframes floatAnim {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.7;
+        }
+
+        50% {
+            transform: translateY(-25px) rotate(180deg);
+            opacity: 0.4;
+        }
+
+        100% {
+            transform: translateY(0) rotate(360deg);
+            opacity: 0.7;
+        }
+    }
+
+
+    @keyframes floatAnim {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0.6;
+        }
+
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+            opacity: 0.3;
+        }
+
+        100% {
+            transform: translateY(0) rotate(360deg);
+            opacity: 0.6;
+        }
+    }
+
+    /* 🎉 Heading Animations */
+    .animated-heading {
+        font-size: 2.5rem;
+        color: #ffffff;
+        animation: slideDown 1.2s ease forwards;
+        z-index: 1;
+    }
+
+    .animated-subtext {
+        font-size: 1.2rem;
+        color: #cccccc;
+        animation: fadeIn 2s ease 0.5s forwards;
+        z-index: 1;
+    }
+
+    /* 🧱 Form Container */
+    .main-content .container {
+        background-color: rgba(20, 20, 20, 0.9);
+        color: #f0f0f0;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-top: 2rem;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Inputs */
+    .main-content .form-label {
+        color: #e0e0e0;
+    }
+
+    .main-content .form-control {
+        background-color: #1e1e1e;
+        color: #ffffff;
+        border: 1px solid #444;
+        transition: all 0.3s ease;
+    }
+
+    .main-content .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+    }
+
+    /* Button */
+    .main-content .btn {
+        background-color: #0d6efd;
+        border: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .main-content .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px rgba(13, 110, 253, 0.7);
+    }
+
+    /* Animations */
+    @keyframes gradientFlow {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .animated-heading {
+            font-size: 1.8rem;
+        }
+
+        .main-content .container {
+            padding: 1.2rem;
+        }
+    }
+
+    #flash-alert {
+        opacity: 1;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    #flash-error {
+  transition: opacity 0.5s ease-out;
+}
+
+</style>
+
+<body>
+    <%- include('./partials/nav') %>
+        <div class="main-content">
+            <div class="floating-bg">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="circle circle3"></div>
+                <div class="circle circle4"></div>
+                <div class="circle circle5"></div>
+                <div class="circle circle6"></div>
+                <div class="circle circle7"></div>
+                <div class="circle circle8"></div>
+            </div>
+
+            <div class="container">
+                <h1 class="animated-heading">Welcome Back to Blogify</h1>
+                <p class="animated-subtext">Express your ideas. Inspire the world.</p>
+
+                <form action="/user/signin" method="post" class="mt-4 text-start">
+
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="emailInput" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="passwordInput" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="passwordInput" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <% if (error) { %>
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'Login Failed',
+    text: '<%= error %>',
+    confirmButtonText: 'Close',
+    showConfirmButton: true,
+    showCloseButton: true
+  });
+</script>
+
+<% } %>
+
+                        <%- include('./partials/script') %>
+</body>
+
+</html>

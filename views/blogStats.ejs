@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= blog.title %> - Stats
+    </title>
+    <%- include('./partials/head') %>
+        <style>
+            /* 📊 Stats Container Styling */
+            .stats-container {
+                min-height: 100vh;
+                padding: 5rem 2rem;
+                background: linear-gradient(-45deg, #1a1a1a, #222, #1a1a1a, #000);
+                background-size: 400% 400%;
+                animation: gradientFlow 15s ease infinite;
+                color: #f0f0f0;
+                font-family: 'Segoe UI', sans-serif;
+                z-index: 1;
+            }
+
+            /* ✨ Section Headings */
+            .stats-container h1 {
+                font-size: 2.5rem;
+                text-align: center;
+                color: #0d6efd;
+                margin-bottom: 2rem;
+                animation: slideDown 1s ease forwards;
+            }
+
+            /* 🌀 Floating Circles */
+            .circle {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(0, 123, 255, 0.35);
+                box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+                animation: floatAnim 12s linear infinite;
+                z-index: 0;
+            }
+
+            .circle1 {
+                width: 150px;
+                height: 150px;
+                top: 10%;
+                left: 10%;
+                animation-delay: 0s;
+            }
+
+            .circle2 {
+                width: 100px;
+                height: 100px;
+                bottom: 15%;
+                right: 15%;
+                animation-delay: 2s;
+            }
+
+            .circle3 {
+                width: 120px;
+                height: 120px;
+                top: 40%;
+                left: 60%;
+                animation-delay: 4s;
+            }
+
+            .stats-container h2 {
+                font-size: 2rem;
+                text-align: center;
+                color: #ffffff;
+                margin-bottom: 0.5rem;
+            }
+
+            .stats-container p {
+                text-align: center;
+                color: #cccccc;
+                margin-bottom: 2rem;
+            }
+
+            /* 📦 Stat Blocks */
+            .stat-block {
+                background-color: rgba(30, 30, 30, 0.9);
+                border: 1px solid #333;
+                padding: 1.5rem;
+                border-radius: 12px;
+                margin: 2rem auto;
+                max-width: 700px;
+                box-shadow: 0 0 25px rgba(13, 110, 253, 0.2);
+                animation: fadeIn 1.5s ease forwards;
+            }
+
+            /* Sub-headings */
+            .stat-block h3 {
+                font-size: 1.4rem;
+                color: #0d6efd;
+                margin-bottom: 1rem;
+            }
+
+            /* List of users */
+            .stat-block ul {
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            .stat-block li {
+                margin-bottom: 0.75rem;
+                font-size: 1rem;
+                color: #e0e0e0;
+                background: rgba(0, 123, 255, 0.1);
+                padding: 0.6rem 1rem;
+                border-radius: 6px;
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.15);
+            }
+
+            /* 🔙 Back link */
+            .stats-container a {
+                display: block;
+                margin: 2rem auto 0;
+                text-align: center;
+                font-size: 1rem;
+                color: #0d6efd;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .stats-container a:hover {
+                color: #ffffff;
+            }
+
+            /* Animations */
+            @keyframes gradientFlow {
+                0% {
+                    background-position: 0% 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-40px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+
+                to {
+                    opacity: 1;
+                }
+            }
+
+            /* 🔧 Responsive */
+            @media (max-width: 768px) {
+                .stats-container h1 {
+                    font-size: 2rem;
+                }
+
+                .stat-block {
+                    padding: 1rem;
+                }
+
+                .stat-block h3 {
+                    font-size: 1.2rem;
+                }
+
+                .stat-block li {
+                    font-size: 0.95rem;
+                }
+            }
+        </style>
+</head>
+
+<body>
+
+    <!-- 🧩 Include your nav -->
+    <%- include('./partials/nav') %>
+        <div class="background-wrapper">
+        <!-- ✨ Floating Circles -->
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+
+        <div class="stats-container">
+            <h1>📊 Blog Stats</h1>
+            <h2>
+                <%= blog.title %>
+            </h2>
+            <p>By <strong>
+                    <%= blog.createdBy.name %>
+                </strong></p>
+
+            <div class="stat-block">
+                <h3>👁️ Views: <%= views.length %>
+                </h3>
+                <% if (views.length===0) { %>
+                    <p>No one has viewed this blog yet.</p>
+                    <% } else { %>
+                        <ul>
+                            <% views.forEach(user=> { %>
+                                <li><strong>
+                                        <%= user.name %>
+                                    </strong> &lt;<%= user.email %>&gt;</li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
+            </div>
+
+            <div class="stat-block">
+                <h3>❤️ Likes: <%= likes.length %>
+                </h3>
+                <% if (likes.length===0) { %>
+                    <p>No one has liked this blog yet.</p>
+                    <% } else { %>
+                        <ul>
+                            <% likes.forEach(user=> { %>
+                                <li><strong>
+                                        <%= user.name %>
+                                    </strong> &lt;<%= user.email %>&gt;</li>
+                                <% }) %>
+                        </ul>
+                        <% } %>
+            </div>
+
+            <a href="/blog/<%= blog._id %>">← Back to Blog</a>
+        </div>
+</div>
+        <%- include('./partials/script') %>
+
+</body>
+
+</html>
