@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const express = require("express");
 const path = require("path")
-const PORT = process.env.PORT || 8000
 const app = express();
 const session = require("express-session"); // ✅ Add this
 const flash = require("connect-flash");
@@ -53,5 +52,11 @@ app.use("/user", userRoute)
 
 app.use("/blog", blogRoute)
 
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+}
 
 module.exports = app;
