@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <%- include('./partials/head') %>
 </head>
 <title>
@@ -253,10 +255,10 @@
         opacity: 1;
         transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    #flash-error {
-  transition: opacity 0.5s ease-out;
-}
 
+    #flash-error {
+        transition: opacity 0.5s ease-out;
+    }
 </style>
 
 <body>
@@ -283,10 +285,27 @@
                         <label for="emailInput" class="form-label">Email address</label>
                         <input type="email" class="form-control" id="emailInput" name="email">
                     </div>
-                    <div class="mb-3">
+
+                    <div class="mb-3 position-relative">
                         <label for="passwordInput" class="form-label">Password</label>
                         <input type="password" class="form-control" id="passwordInput" name="password">
+                        <span class="position-absolute" onclick="togglePassword()" style="top: 50%; right: 1rem; transform: translateY(-50%); cursor: pointer;">
+                            <i class="fa-solid fa-eye" id="toggleEye"></i>
+                        </span>
                     </div>
+                    <!-- script for ToggleEye -->
+                    <script>
+                        function togglePassword() {
+                            const passwordInput = document.getElementById("passwordInput");
+                            const toggleIcon = document.getElementById("toggleEye");
+                            const isPassword = passwordInput.type === "password";
+
+                            passwordInput.type = isPassword ? "text" : "password";
+                            toggleIcon.classList.toggle("fa-eye");
+                            toggleIcon.classList.toggle("fa-eye-slash");
+                        }
+                    </script>
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -294,20 +313,20 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <% if (error) { %>
-<script>
-  Swal.fire({
-    icon: 'error',
-    title: 'Login Failed',
-    text: '<%= error %>',
-    confirmButtonText: 'Close',
-    showConfirmButton: true,
-    showCloseButton: true
-  });
-</script>
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: '<%= error %>',
+                    confirmButtonText: 'Close',
+                    showConfirmButton: true,
+                    showCloseButton: true
+                });
+            </script>
 
-<% } %>
+            <% } %>
 
-                        <%- include('./partials/script') %>
+                <%- include('./partials/script') %>
 </body>
 
 </html>

@@ -260,6 +260,7 @@
                     <button class="btn btn-primary">Add</button>
                 </form>
             </div>
+                    <!-- Like Button -->
             <div class="container mt-3">
                 <form id="like-form" action="/blog/<%= blog._id %>/like" method="POST">
                     <button class="btn btn-outline-primary" type="submit">
@@ -273,7 +274,7 @@
                     <h3>Comments (<%= comments.length %>)</h3>
                     <% comments.forEach((comment, i)=> { %>
                         <div class="comment-box" data-animation-delay="<%= (i * 0.1) %>">
-                            <img src="<%= blog.createdBy?.profileImageURL || '/images/Default_Profile_Image.png' %>"
+                            <img src="<%= comment.createdBy?.profileImageURL || '/images/Default_Profile_Image.png' %>"
                                 alt="Author" class="author-img" />
                             <strong>
                                 <%= comment.createdBy.fullname %>:
@@ -281,12 +282,7 @@
                             <pre style="margin: 8px 0 0 0;"><%= comment.content %></pre>
                         </div>
                         <% }) %>
-
                 </div>
-
-                <!-- Like Button -->
-
-
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {

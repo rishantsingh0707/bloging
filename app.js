@@ -15,7 +15,7 @@ const { checkForAuthenticationCookies } = require("./middleware/authentication")
 const setUser = require("./middleware/setUser"); // adjust the path
 const MongoStore = require("connect-mongo");
 
-app.use(express.static(path.resolve("./public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(session({
     secret: "Vengeance",

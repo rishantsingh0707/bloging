@@ -68,6 +68,8 @@ router.post('/:id/like', async (req, res) => {
 
 
 router.post("/comment/:blogId", async (req, res) => {
+  const blogId = req.params.blogId; 
+
   try {
     const blog = await Blog.findById(req.params.blogId);
     const comments = await Comment.find({ blog: blog._id }).populate({ path: 'createdBy', strictPopulate: false }).exec();
@@ -90,7 +92,6 @@ router.post("/comment/:blogId", async (req, res) => {
   } catch (err) {
     console.error(err);
     req.flash("error", "Something went wrong while liking the blog.");
-
     res.redirect(`/blog/${blog._id}?Failed to comment`);
   }
 });
