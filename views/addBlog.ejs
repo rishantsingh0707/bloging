@@ -245,7 +245,8 @@
 
 
         <div class="container mt-3 d-flex align-items-center">
-            <img src="<%= blog.createdBy.profileImageURL %>">
+            <img src="<%= blog.createdBy?.profileImageURL || '/images/Default_Profile_Image.png' %>" alt="Author"
+                class="author-img" />
             <span class="ms-2">
                 <%= blog.createdBy.fullname %>
             </span>
@@ -272,7 +273,8 @@
                     <h3>Comments (<%= comments.length %>)</h3>
                     <% comments.forEach((comment, i)=> { %>
                         <div class="comment-box" data-animation-delay="<%= (i * 0.1) %>">
-                            <img src="<%= comment.createdBy.profileImageURL %>">
+                            <img src="<%= blog.createdBy?.profileImageURL || '/images/Default_Profile_Image.png' %>"
+                                alt="Author" class="author-img" />
                             <strong>
                                 <%= comment.createdBy.fullname %>:
                             </strong>

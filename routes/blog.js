@@ -1,24 +1,14 @@
 const { Router } = require("express");
 const path = require("path");
-const multer = require("multer");
+const multer = require('multer');
+const { storage } = require('../utils/cloudinary');
+const upload = multer({ storage: storage })
+
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
 const flash = require("connect-flash");
 
 const router = Router();
-
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.resolve(`./public/uploads`));
-  },
-  filename: function (req, file, cb) {
-    const fileName = `${Date.now()} - ${file.originalname}`;
-    cb(null, fileName);
-  }
-})
-
-const upload = multer({ storage: storage })
 
 
 router.get("/addBlog", (req, res) => {
@@ -34,7 +24,7 @@ router.post("/", upload.single("coverImage"), async (req, res) => {
     const newBlog = new Blog({
       title,
       body,
-      coverImageURL,
+      coverImageURL:req.file.path,
       createdBy: req.user._id
     });
 
@@ -123,7 +113,7 @@ router.get("/:id", async (req, res) => {
       await blog.save();
     }
 
-    const comments = await Comment.find({ blog: req.params.id }).populate("createdBy");
+    const comments = await Comment.find({ blog: blog._id}).populate("createdBy");
 
     console.log("Viewing blog ID:", req.params.id);
 
