@@ -18,13 +18,13 @@ const MongoStore = require("connect-mongo");
 app.use(express.static(path.resolve("./public")));
 
 app.use(session({
-  secret: "Vengeance",
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGO_URL,
-    collectionName: "sessions"
-  })
+    secret: "Vengeance",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL,
+        collectionName: "sessions"
+    })
 }));
 
 app.use(flash());
@@ -40,7 +40,7 @@ app.use(methodOverride("_method"));
 
 async function startServer() {
     try {
-        await mongoose.connect(process.env.MONGO_URL, {
+        await mongoose.connect(process.env.MONGO_URL || "mongodb+srv://Rishant_Singh:Rishant1408@blogproject.tnluecy.mongodb.net/blogify?retryWrites=true&w=majority", {
             bufferCommands: false,
             serverSelectionTimeoutMS: 10000,
         });
@@ -70,12 +70,11 @@ async function startServer() {
         app.use("/blog", blogRoute);
 
         // ✅ Start server only locally (not in Vercel)
-        if (process.env.NODE_ENV !== "production") {
-            const PORT = process.env.PORT || 8000;
-            app.listen(PORT, () => {
-                console.log(`🚀 Server started at http://localhost:${PORT}`);
-            });
-        }
+        const PORT = process.env.PORT || 8000;
+        app.listen(PORT, () => {
+            console.log(`🚀 Server started on port ${PORT}`);
+        });
+
 
     } catch (err) {
         console.error("❌ MongoDB connection failed:", err);
