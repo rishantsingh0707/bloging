@@ -259,6 +259,13 @@
                     <button class="btn btn-primary">Add</button>
                 </form>
             </div>
+            <div class="container mt-3">
+                <form id="like-form" action="/blog/<%= blog._id %>/like" method="POST">
+                    <button class="btn btn-outline-primary" type="submit">
+                        ❤️ Like (<%= blog.likesCount %>)
+                    </button>
+                </form>
+            </div>
             <% } %>
 
                 <div class="container mt-3" style="width: 70%;">
@@ -272,17 +279,12 @@
                             <pre style="margin: 8px 0 0 0;"><%= comment.content %></pre>
                         </div>
                         <% }) %>
+
                 </div>
 
                 <!-- Like Button -->
 
-                <div class="container mt-3">
-                    <form id="like-form" action="/blog/<%= blog._id %>/like" method="POST">
-                        <button class="btn btn-outline-primary" type="submit">
-                            ❤️ Like (<%= blog.likesCount %>)
-                        </button>
-                    </form>
-                </div>
+
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -328,7 +330,7 @@
                 </script>
 
                 <%- include('./partials/script') %>
-                
+
 </body>
 
 </html>
