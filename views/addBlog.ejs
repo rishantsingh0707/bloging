@@ -6,47 +6,25 @@
 </head>
 <title>Your Blog</title>
 <style>
-    /* ==== Background wrapper ==== */
-    body {
+    /* Reset and Base Styles */
+    * {
         margin: 0;
         padding: 0;
-        background: linear-gradient(-45deg, #0a0a0a, #111, #1a1a1a, #000);
+        box-sizing: border-box;
+    }
+
+    /* Animated Background */
+    body {
+        background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
         background-size: 400% 400%;
-        animation: gradientShift 18s ease infinite;
-        overflow-x: hidden;
-        position: relative;
-        color: #f5f5f5;
+        animation: gradientFlow 15s ease infinite;
         min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        position: relative;
+        overflow-x: hidden;
     }
 
-    /* ==== Floating Circles ==== */
-    body::before {
-        content: "";
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        background:
-            radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
-            radial-gradient(circle at 80% 30%, rgba(255, 0, 255, 0.15) 0%, transparent 40%),
-            radial-gradient(circle at 30% 80%, rgba(0, 128, 255, 0.1) 0%, transparent 50%);
-        animation: floatCircles 20s ease-in-out infinite;
-    }
-
-    @keyframes floatCircles {
-
-        0%,
-        100% {
-            background-position: 0% 0%, 100% 0%, 0% 100%;
-        }
-
-        50% {
-            background-position: 10% 10%, 90% 20%, 20% 90%;
-        }
-    }
-
-    @keyframes gradientShift {
+    @keyframes gradientFlow {
         0% {
             background-position: 0% 50%;
         }
@@ -60,171 +38,614 @@
         }
     }
 
-    /* ==== Blog Styling ==== */
-    h1 {
-        font-size: 2.5rem;
-        color: #fff;
-        margin-bottom: 1rem;
-        animation: slideDown 1s ease;
+    /* Floating Particles Background */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        animation: floatingOrbs 20s ease-in-out infinite;
+        pointer-events: none;
+        z-index: -1;
     }
 
-    .blog-image-wrapper {
-        width: 100vw;
-        /* Full viewport width */
-        max-width: 100%;
-        height: auto;
-        margin: 1.5rem 0;
-        overflow: hidden;
-        border-radius: 0;
-        /* Or 12px if you want rounded */
+    @keyframes floatingOrbs {
+
+        0%,
+        100% {
+            transform: translateY(0px) scale(1);
+            opacity: 0.7;
+        }
+
+        33% {
+            transform: translateY(-20px) scale(1.1);
+            opacity: 0.9;
+        }
+
+        66% {
+            transform: translateY(-40px) scale(0.9);
+            opacity: 0.5;
+        }
+    }
+
+    /* Container Styling */
+    .container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 30px;
+        margin: 20px auto;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        animation: containerSlideUp 0.8s ease-out;
         position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        overflow: hidden;
+    }
+
+    .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        animation: shimmerEffect 3s ease-in-out infinite;
+    }
+
+    @keyframes containerSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes shimmerEffect {
+        0% {
+            left: -100%;
+        }
+
+        50% {
+            left: 100%;
+        }
+
+        100% {
+            left: 100%;
+        }
+    }
+
+    /* Blog Title Animation */
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: titleGradient 4s ease infinite, titleBounce 0.8s ease-out;
+        text-align: center;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes titleGradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @keyframes titleBounce {
+        0% {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.8);
+        }
+
+        60% {
+            transform: translateY(5px) scale(1.05);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Blog Image Styling */
+    .blog-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        margin: 30px 0;
+        animation: imageSlideIn 1s ease-out 0.3s both;
+        max-width: 90% !important;
+    }
+
+    .blog-image-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 1;
     }
 
     .blog-image {
-        width: 100%;
-        height: 400px;
-        /* Or however tall you want the rectangle */
-        object-fit: cover;
+        max-width: 80%;
+        padding: 20px;
+        height: auto;
         display: block;
-        border-radius: 0;
-        /* Or 12px if you want rounded */
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+        transition: transform 0.6s ease;
+        margin-left: 270px;
+        border-radius: 30px !important;
     }
 
-    @media (max-width: 768px) {
-        .blog-image {
-            height: 250px;
+    .blog-image:hover {
+        transform: scale(1.08);
+    }
+
+    @keyframes imageSlideIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
         }
     }
 
-    pre.blog-body {
-        white-space: pre-wrap;
-        background-color: rgba(25, 25, 25, 0.9);
-        padding: 1.5rem;
-        border-radius: 10px;
+    /* Blog Body Styling */
+    .blog-body {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9));
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 5px solid #667eea;
         font-size: 1.1rem;
-        line-height: 1.6;
-        color: #e6e6e6;
-        box-shadow: 0 0 15px rgba(13, 110, 253, 0.3);
+        line-height: 1.8;
+        color: #333;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        animation: contentFadeIn 1s ease-out 0.5s both;
+        white-space: pre-wrap;
+        font-family: inherit;
     }
 
-    /* ==== Author Image ==== */
-    .container img {
+    @keyframes contentFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Author Section */
+    .d-flex.align-items-center {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 242, 247, 0.95));
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        animation: authorSlideIn 0.8s ease-out 0.7s both;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+
+    .d-flex.align-items-center:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    @keyframes authorSlideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .author-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid #667eea;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        animation: profilePulse 2s ease-in-out infinite;
+    }
+
+    .author-img:hover {
+        transform: scale(1.15) rotate(10deg);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    }
+
+    @keyframes profilePulse {
+
+        0%,
+        100% {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        50% {
+            box-shadow: 0 5px 25px rgba(102, 126, 234, 0.6);
+        }
+    }
+
+    /* Comment Section */
+    .comment-section {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
+        backdrop-filter: blur(10px);
+        padding: 25px;
+        border-radius: 20px;
+        margin: 30px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        animation: sectionSlideUp 0.8s ease-out 0.9s both;
+        position: relative;
+        overflow: hidden;
+        width: 1320px;
+        margin-left: 290px;
+    }
+
+    .comment-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+        animation: sectionShimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes sectionSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes sectionShimmer {
+        0% {
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+
+        50% {
+            transform: translateX(0%) translateY(0%) rotate(45deg);
+        }
+
+        100% {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+    }
+
+    /* Form Controls */
+    .form-control {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(102, 126, 234, 0.3);
+        border-radius: 12px;
+        padding: 15px 20px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 1);
+    }
+
+    .form-control:hover {
+        border-color: #667eea;
+        transform: translateY(-1px);
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 12px 25px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        background: linear-gradient(45deg, #764ba2, #667eea);
+    }
+
+    .btn-outline-primary {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #667eea;
+        color: #667eea;
+        backdrop-filter: blur(5px);
+    }
+
+    .btn-outline-primary:hover {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        transform: translateY(-3px) scale(1.05);
+        animation: heartBeat 0.6s ease;
+    }
+
+    @keyframes heartBeat {
+        0% {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        25% {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        50% {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        75% {
+            transform: translateY(-3px) scale(1.15);
+        }
+
+        100% {
+            transform: translateY(-3px) scale(1.05);
+        }
+    }
+
+    /* Comments Header */
+    h3 {
+        color: #333;
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        position: relative;
+        animation: headerSlideIn 0.8s ease-out 1.1s both;
+    }
+
+    h3::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 2px;
+        animation: underlineGrow 1s ease-out 1.5s forwards;
+    }
+
+    @keyframes headerSlideIn {
+        from {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes underlineGrow {
+        to {
+            width: 120px;
+        }
+    }
+
+    /* Comment Boxes */
+    .comment-box {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        opacity: 0;
+        animation: commentSlideIn 0.6s ease-out forwards;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .comment-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, #667eea, #764ba2);
+        transform: scaleY(0);
+        transition: transform 0.3s ease;
+    }
+
+    .comment-box:hover::before {
+        transform: scaleY(1);
+    }
+
+    .comment-box:hover {
+        transform: translateX(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+    }
+
+    @keyframes commentSlideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-40px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+    }
+
+    .comment-box .author-img {
         width: 45px;
         height: 45px;
-        border-radius: 50%;
-        object-fit: cover;
-        box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+        margin-right: 15px;
+        float: left;
     }
 
-    /* ==== Comment Box ==== */
-    .comment-section {
-        max-width: 600px;
-        margin: 2rem auto;
-        padding: 1rem;
-        background-color: rgba(30, 30, 30, 0.8);
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
-    }
-
-
-    .comment-section input.form-control {
-        background-color: #1e1e1e;
-        color: #fff;
-        border: 1px solid #444;
-    }
-
-    .comment-section input.form-control:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
-    }
-
-    .comment-section .btn {
-        background-color: #0d6efd;
-        border: none;
+    .comment-box strong {
+        color: #333;
         font-size: 1.1rem;
-        padding: 0.6rem 1.4rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .comment-section .btn:hover {
-        transform: scale(1.08);
-        box-shadow: 0 0 14px rgba(13, 110, 253, 0.6);
-    }
-
-    .comment-section input::placeholder {
-        color: #ffffff;
-        opacity: 0.8;
-        /* Optional: slight transparency */
-    }
-
-
-    /* ==== Each Comment ==== */
-    .comment-box {
-        background-color: rgba(35, 35, 35, 0.8);
-        padding: 1rem;
-        margin-top: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(13, 110, 253, 0.2);
-        animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .comment-box img {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        margin-bottom: 0.5rem;
+        display: block;
+        margin-left: 60px;
+        margin-bottom: 8px;
     }
 
     .comment-box pre {
-        margin: 0;
-        color: #ccc;
+        margin-left: 60px;
+        font-family: inherit;
+        white-space: pre-wrap;
+        color: #666;
+        line-height: 1.6;
         background: none;
+        border: none;
         padding: 0;
     }
 
-    /* Animations */
-    @keyframes slideDown {
+    /* Stats Container */
+    #stats-container {
+        background: linear-gradient(135deg, rgba(240, 242, 247, 0.95), rgba(255, 255, 255, 0.95));
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 25px;
+        margin-top: 20px;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        animation: statsExpand 0.5s ease-out;
+        display: none;
+    }
+
+    @keyframes statsExpand {
         from {
-            transform: translateY(-30px);
             opacity: 0;
+            transform: scale(0.9);
+            max-height: 0;
         }
 
         to {
-            transform: translateY(0);
             opacity: 1;
+            transform: scale(1);
+            max-height: 500px;
         }
     }
 
-    @keyframes fadeInUp {
-        from {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    /* Responsive */
+    /* Responsive Design */
     @media (max-width: 768px) {
-        .comment-section {
-            width: 95%;
+        .container {
+            margin: 10px;
+            padding: 20px;
+            border-radius: 15px;
         }
 
-        .blog-image {
-            max-height: 3000px;
+        h1 {
+            font-size: 2rem;
+        }
+
+        .comment-box:hover {
+            transform: translateX(5px);
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+        }
+
+        body::before {
+            animation-duration: 25s;
+        }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    /* Focus States */
+    *:focus {
+        outline: 2px solid #667eea;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* Smooth Scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Loading States */
+    .loading {
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
         }
     }
 </style>
-
-
 
 <body>
 
@@ -260,7 +681,7 @@
                     <button class="btn btn-primary">Add</button>
                 </form>
             </div>
-                    <!-- Like Button -->
+            <!-- Like Button -->
             <div class="container mt-3">
                 <form id="like-form" action="/blog/<%= blog._id %>/like" method="POST">
                     <button class="btn btn-outline-primary" type="submit">
@@ -286,7 +707,6 @@
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        // Set animation-delay for each comment-box
                         document.querySelectorAll('.comment-box[data-animation-delay]').forEach(function (el) {
                             const delay = el.getAttribute('data-animation-delay');
                             el.style.animationDelay = delay + 's';

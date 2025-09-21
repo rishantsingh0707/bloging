@@ -7,143 +7,167 @@
     </title>
     <%- include('./partials/head') %>
         <style>
-            /* 📊 Stats Container Styling */
-            .stats-container {
+            /* Enhanced Blog Stats Page Styling with Glassmorphism */
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 min-height: 100vh;
-                padding: 5rem 2rem;
-                background: linear-gradient(-45deg, #1a1a1a, #222, #1a1a1a, #000);
-                background-size: 400% 400%;
-                animation: gradientFlow 15s ease infinite;
-                color: #f0f0f0;
-                font-family: 'Segoe UI', sans-serif;
-                z-index: 1;
+                overflow-x: hidden;
             }
 
-            /* ✨ Section Headings */
-            .stats-container h1 {
-                font-size: 2.5rem;
-                text-align: center;
-                color: #0d6efd;
-                margin-bottom: 2rem;
-                animation: slideDown 1s ease forwards;
+            .background-wrapper {
+                position: relative;
+                min-height: 100vh;
+                padding: 2rem 0;
             }
 
-            /* 🌀 Floating Circles */
+            /* Enhanced Floating Circles */
             .circle {
                 position: absolute;
                 border-radius: 50%;
-                background: rgba(0, 123, 255, 0.35);
-                box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
-                animation: floatAnim 12s linear infinite;
-                z-index: 0;
+                background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                animation: float 6s ease-in-out infinite;
+                z-index: 1;
             }
 
             .circle1 {
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
                 top: 10%;
                 left: 10%;
                 animation-delay: 0s;
             }
 
             .circle2 {
-                width: 100px;
-                height: 100px;
-                bottom: 15%;
+                width: 150px;
+                height: 150px;
+                top: 60%;
                 right: 15%;
                 animation-delay: 2s;
             }
 
             .circle3 {
-                width: 120px;
-                height: 120px;
-                top: 40%;
-                left: 60%;
+                width: 100px;
+                height: 100px;
+                bottom: 20%;
+                left: 20%;
                 animation-delay: 4s;
             }
 
-            .stats-container h2 {
-                font-size: 2rem;
-                text-align: center;
-                color: #ffffff;
-                margin-bottom: 0.5rem;
+            .circle4 {
+                width: 120px;
+                height: 120px;
+                top: 30%;
+                right: 30%;
+                animation-delay: 1s;
             }
 
-            .stats-container p {
-                text-align: center;
-                color: #cccccc;
-                margin-bottom: 2rem;
+            .circle5 {
+                width: 80px;
+                height: 80px;
+                top: 70%;
+                left: 60%;
+                animation-delay: 3s;
             }
 
-            /* 📦 Stat Blocks */
-            .stat-block {
-                background-color: rgba(30, 30, 30, 0.9);
-                border: 1px solid #333;
-                padding: 1.5rem;
-                border-radius: 12px;
-                margin: 2rem auto;
-                max-width: 700px;
-                box-shadow: 0 0 25px rgba(13, 110, 253, 0.2);
-                animation: fadeIn 1.5s ease forwards;
+            .circle6 {
+                width: 160px;
+                height: 160px;
+                bottom: 40%;
+                right: 10%;
+                animation-delay: 5s;
             }
 
-            /* Sub-headings */
-            .stat-block h3 {
-                font-size: 1.4rem;
-                color: #0d6efd;
-                margin-bottom: 1rem;
+            .circle7 {
+                width: 90px;
+                height: 90px;
+                top: 15%;
+                left: 70%;
+                animation-delay: 2.5s;
             }
 
-            /* List of users */
-            .stat-block ul {
-                list-style-type: none;
-                padding-left: 0;
-            }
+            @keyframes float {
 
-            .stat-block li {
-                margin-bottom: 0.75rem;
-                font-size: 1rem;
-                color: #e0e0e0;
-                background: rgba(0, 123, 255, 0.1);
-                padding: 0.6rem 1rem;
-                border-radius: 6px;
-                box-shadow: 0 0 8px rgba(0, 123, 255, 0.15);
-            }
-
-            /* 🔙 Back link */
-            .stats-container a {
-                display: block;
-                margin: 2rem auto 0;
-                text-align: center;
-                font-size: 1rem;
-                color: #0d6efd;
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .stats-container a:hover {
-                color: #ffffff;
-            }
-
-            /* Animations */
-            @keyframes gradientFlow {
-                0% {
-                    background-position: 0% 50%;
+                0%,
+                100% {
+                    transform: translateY(0px) rotate(0deg);
+                    opacity: 0.7;
                 }
 
                 50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
+                    transform: translateY(-20px) rotate(180deg);
+                    opacity: 1;
                 }
             }
 
-            @keyframes slideDown {
+            /* Hero Section */
+            .hero-section {
+                text-align: center;
+                margin-bottom: 3rem;
+                position: relative;
+                z-index: 10;
+            }
+
+            .main-title {
+                font-size: 3.5rem;
+                font-weight: 700;
+                color: white;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                margin-bottom: 1rem;
+                background: linear-gradient(45deg, #fff, #e0e7ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: shimmer 3s ease-in-out infinite;
+            }
+
+            .subtitle {
+                font-size: 1.5rem;
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: 300;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            @keyframes shimmer {
+
+                0%,
+                100% {
+                    opacity: 1;
+                }
+
+                50% {
+                    opacity: 0.8;
+                }
+            }
+
+            /* Stats Container */
+            .stats-container {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 2rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                position: relative;
+                z-index: 10;
+                animation: slideUp 0.8s ease-out;
+            }
+
+            @keyframes slideUp {
                 from {
                     opacity: 0;
-                    transform: translateY(-40px);
+                    transform: translateY(30px);
                 }
 
                 to {
@@ -152,32 +176,256 @@
                 }
             }
 
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
+            /* Blog Header */
+            .blog-header {
+                text-align: center;
+                margin-bottom: 2.5rem;
+                padding-bottom: 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .blog-title {
+                font-size: 2.5rem;
+                color: white;
+                margin-bottom: 1rem;
+                font-weight: 600;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            }
+
+            .author-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .author-label {
+                font-size: 1rem;
+                color: rgba(255, 255, 255, 0.7);
+                font-weight: 400;
+            }
+
+            .author-name {
+                font-size: 1.2rem;
+                color: white;
+            }
+
+            /* Overview Section */
+            .overview-section {
+                margin-bottom: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                color: white;
+                margin-bottom: 1.5rem;
+                text-align: center;
+                font-weight: 600;
+            }
+
+            .overview-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .overview-card {
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(10px);
+                border-radius: 15px;
+                padding: 1.5rem;
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .overview-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .overview-card h3 {
+                font-size: 1.1rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 0.5rem;
+            }
+
+            .metric {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: white;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            }
+
+            /* Stat Blocks */
+            .stat-block {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(15px);
+                border-radius: 15px;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .stat-block:hover {
+                background: rgba(255, 255, 255, 0.15);
+                transform: translateY(-2px);
+            }
+
+            .stat-title {
+                font-size: 1.8rem;
+                color: white;
+                margin-bottom: 1.5rem;
+                font-weight: 600;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            }
+
+            .empty-state {
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .empty-state h4 {
+                font-size: 1.3rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 0.5rem;
+            }
+
+            .empty-state p {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 1rem;
+            }
+
+            .user-list h4 {
+                font-size: 1.2rem;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 1rem;
+            }
+
+            .user-list ul {
+                list-style: none;
+            }
+
+            .user-item {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.8rem 1rem;
+                margin-bottom: 0.5rem;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            .user-item:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateX(5px);
+            }
+
+            .user-item strong {
+                color: white;
+                font-weight: 600;
+            }
+
+            .user-email {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.9rem;
+                margin-left: 0.5rem;
+            }
+
+            /* Navigation Section */
+            .navigation-section {
+                text-align: center;
+                padding-top: 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .navigation-section h3 {
+                font-size: 1.3rem;
+                color: white;
+                margin-bottom: 1.5rem;
+            }
+
+            .action-buttons {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .back-button,
+            .all-blogs-button {
+                display: inline-block;
+                padding: 0.8rem 2rem;
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-weight: 600;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .back-button:hover,
+            .all-blogs-button:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                text-decoration: none;
+                color: white;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .main-title {
+                    font-size: 2.5rem;
                 }
 
-                to {
-                    opacity: 1;
+                .subtitle {
+                    font-size: 1.2rem;
+                }
+
+                .blog-title {
+                    font-size: 2rem;
+                }
+
+                .stats-container {
+                    margin: 0 1rem;
+                    padding: 1.5rem;
+                }
+
+                .overview-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .action-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .circle1,
+                .circle2,
+                .circle3,
+                .circle4,
+                .circle5,
+                .circle6,
+                .circle7 {
+                    opacity: 0.5;
                 }
             }
 
-            /* 🔧 Responsive */
-            @media (max-width: 768px) {
-                .stats-container h1 {
+            @media (max-width: 480px) {
+                .main-title {
                     font-size: 2rem;
                 }
 
                 .stat-block {
-                    padding: 1rem;
+                    padding: 1.5rem;
                 }
 
-                .stat-block h3 {
-                    font-size: 1.2rem;
-                }
-
-                .stat-block li {
-                    font-size: 0.95rem;
+                .metric {
+                    font-size: 2rem;
                 }
             }
         </style>
@@ -187,56 +435,118 @@
 
     <!-- 🧩 Include your nav -->
     <%- include('./partials/nav') %>
+
         <div class="background-wrapper">
-        <!-- ✨ Floating Circles -->
-        <div class="circle circle1"></div>
-        <div class="circle circle2"></div>
-        <div class="circle circle3"></div>
+            <!-- ✨ Enhanced Floating Circles -->
+            <div class="circle circle1"></div>
+            <div class="circle circle2"></div>
+            <div class="circle circle3"></div>
+            <!-- Added more floating circles for better visual depth -->
+            <div class="circle circle4"></div>
+            <div class="circle circle5"></div>
+            <div class="circle circle6"></div>
+            <div class="circle circle7"></div>
 
-        <div class="stats-container">
-            <h1>📊 Blog Stats</h1>
-            <h2>
-                <%= blog.title %>
-            </h2>
-            <p>By <strong>
-                    <%= blog.createdBy.name %>
-                </strong></p>
+            <!-- Added hero section with enhanced headings -->
+            <section class="hero-section">
+                <h1 class="main-title"> Blog Analytics Dashboard</h1>
+                <h2 class="subtitle">Comprehensive Performance Insights</h2>
+            </section>
 
-            <div class="stat-block">
-                <h3>👁️ Views: <%= views.length %>
-                </h3>
-                <% if (views.length===0) { %>
-                    <p>No one has viewed this blog yet.</p>
-                    <% } else { %>
-                        <ul>
-                            <% views.forEach(user=> { %>
-                                <li><strong>
-                                        <%= user.name %>
-                                    </strong> &lt;<%= user.email %>&gt;</li>
-                                <% }) %>
-                        </ul>
-                        <% } %>
+            <div class="stats-container">
+                <!-- Enhanced blog title section -->
+                <div class="blog-header">
+                    <h2 class="blog-title">
+                        <%= blog.title %>
+                    </h2>
+                    <div class="author-info">
+                        <h3 class="author-label">Created by</h3>
+                        <p class="author-name"><strong>
+                                <%= blog.createdBy.name %>
+                            </strong></p>
+                    </div>
+                </div>
+
+                <!-- Added overview section -->
+                <section class="overview-section">
+                    <h2 class="section-title">📈 Performance Overview</h2>
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <h3>Total Engagement</h3>
+                            <p class="metric">
+                                <%= views.length + likes.length %>
+                            </p>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Engagement Rate</h3>
+                            <p class="metric">
+                                <%= views.length> 0 ? Math.round((likes.length / views.length) * 100) : 0 %>%
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="stat-block">
+                    <h3 class="stat-title">👁️ Views: <%= views.length %>
+                    </h3>
+                    <% if (views.length===0) { %>
+                        <div class="empty-state">
+                            <h4>No Views Yet</h4>
+                            <p>This blog is waiting for its first reader!</p>
+                        </div>
+                        <% } else { %>
+                            <div class="user-list">
+                                <h4>Recent Viewers</h4>
+                                <ul>
+                                    <% views.forEach(user=> { %>
+                                        <li class="user-item">
+                                            <strong>
+                                                <%= user.name %>
+                                            </strong>
+                                            <span class="user-email">&lt;<%= user.email %>&gt;</span>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                            </div>
+                            <% } %>
+                </div>
+
+                <div class="stat-block">
+                    <h3 class="stat-title">❤️ Likes: <%= likes.length %>
+                    </h3>
+                    <% if (likes.length===0) { %>
+                        <div class="empty-state">
+                            <h4>No Likes Yet</h4>
+                            <p>Be the first to show some love!</p>
+                        </div>
+                        <% } else { %>
+                            <div class="user-list">
+                                <h4>Appreciated by</h4>
+                                <ul>
+                                    <% likes.forEach(user=> { %>
+                                        <li class="user-item">
+                                            <strong>
+                                                <%= user.name %>
+                                            </strong>
+                                            <span class="user-email">&lt;<%= user.email %>&gt;</span>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                            </div>
+                            <% } %>
+                </div>
+
+                <!-- Enhanced navigation section -->
+                <section class="navigation-section">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <a href="/blog/<%= blog._id %>" class="back-button">← Back to Blog</a>
+                        <a href="/" class="all-blogs-button">View All Blogs</a>
+                    </div>
+                </section>
             </div>
-
-            <div class="stat-block">
-                <h3>❤️ Likes: <%= likes.length %>
-                </h3>
-                <% if (likes.length===0) { %>
-                    <p>No one has liked this blog yet.</p>
-                    <% } else { %>
-                        <ul>
-                            <% likes.forEach(user=> { %>
-                                <li><strong>
-                                        <%= user.name %>
-                                    </strong> &lt;<%= user.email %>&gt;</li>
-                                <% }) %>
-                        </ul>
-                        <% } %>
-            </div>
-
-            <a href="/blog/<%= blog._id %>">← Back to Blog</a>
         </div>
-</div>
+
         <%- include('./partials/script') %>
 
 </body>

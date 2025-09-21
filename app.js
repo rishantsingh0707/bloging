@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path")
 const app = express();
-const session = require("express-session"); // ✅ Add this
+const session = require("express-session"); 
 const flash = require("connect-flash");
 const userRoute = require("./routes/user")
 const blogRoute = require("./routes/blog")

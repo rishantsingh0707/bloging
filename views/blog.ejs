@@ -2,152 +2,104 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Blog - Glassmorphism Style</title>
   <%- include('./partials/head') %>
-    <title>Blog</title>
+
     <style>
-      /* 🌌 Background Wrapper with Gradient & Floating Circles */
-      .background-wrapper {
-        min-height: 100vh;
-        padding: 5rem 1rem 3rem;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(-45deg, #1a1a1a, #222, #1a1a1a, #000);
-        background-size: 400% 400%;
-        animation: gradientFlow 15s ease infinite;
-        z-index: 0;
+      /* 🎨 Blog Form Glassmorphism Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
 
-      /* 🌀 Floating Circles */
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* 🌟 Background Wrapper */
+      .background-wrapper {
+        position: relative;
+        min-height: 100vh;
+        padding: 2rem 0;
+        background: linear-gradient(135deg,
+            rgba(102, 126, 234, 0.1) 0%,
+            rgba(118, 75, 162, 0.1) 100%);
+      }
+
+      /* ✨ Floating Circles */
       .circle {
         position: absolute;
         border-radius: 50%;
-        background: rgba(0, 123, 255, 0.35);
-        box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
-        animation: floatAnim 12s linear infinite;
-        z-index: 0;
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05));
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: float 6s ease-in-out infinite;
+        z-index: 1;
       }
 
       .circle1 {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         top: 10%;
         left: 10%;
         animation-delay: 0s;
       }
 
       .circle2 {
-        width: 100px;
-        height: 100px;
-        bottom: 15%;
+        width: 150px;
+        height: 150px;
+        top: 60%;
         right: 15%;
         animation-delay: 2s;
       }
 
       .circle3 {
-        width: 120px;
-        height: 120px;
-        top: 40%;
-        left: 60%;
+        width: 100px;
+        height: 100px;
+        bottom: 20%;
+        left: 20%;
         animation-delay: 4s;
       }
 
-      /* ✍️ Form Container */
-      .background-wrapper .container {
-        background-color: rgba(20, 20, 20, 0.95);
-        padding: 2rem;
-        border-radius: 14px;
-        color: #f0f0f0;
-        box-shadow: 0 0 25px rgba(1, 39, 255, 0.6);
-        position: relative;
-        z-index: 2;
-        animation: slideDown 1s ease forwards;
-      }
+      @keyframes float {
 
-      .form-heading {
-        font-size: 2.2rem;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-        animation: slideDown 1.2s ease forwards;
-      }
-
-      .form-subtitle {
-        font-size: 1.1rem;
-        color: #cccccc;
-        margin-bottom: 1.5rem;
-        animation: fadeIn 2s ease 0.5s forwards;
-      }
-
-      .form-group {
-        margin-bottom: 1.5rem;
-
-      }
-
-      .form-control,
-      .form-body {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        border-radius: 8px;
-        border: 1px solid #444;
-        background-color: #1e1e1e;
-        color: #fff;
-        transition: all 0.3s ease;
-      }
-
-      .form-control:focus,
-      .form-body:focus {
-        outline: none;
-        border-color: #0d6efd;
-        box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
-      }
-
-      .form-body {
-        min-height: 200px;
-        resize: vertical;
-      }
-
-      .btn-submit {
-        background-color: #0d6efd;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        color: #fff;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .btn-submit:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 12px rgba(13, 110, 253, 0.7);
-      }
-
-      .custom-input::placeholder {
-        color: gray;
-        opacity: 1;
-        /* Ensures full visibility */
-      }
-
-
-
-      @keyframes gradientFlow {
-        0% {
-          background-position: 0% 50%;
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
         }
 
         50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
+          transform: translateY(-20px) rotate(180deg);
         }
       }
 
-      @keyframes slideDown {
+      /* 📦 Container */
+      .container {
+        position: relative;
+        z-index: 10;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        animation: slideUp 0.8s ease-out;
+      }
+
+      @keyframes slideUp {
         from {
           opacity: 0;
-          transform: translateY(-40px);
+          transform: translateY(50px);
         }
 
         to {
@@ -156,48 +108,241 @@
         }
       }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-
-        to {
-          opacity: 1;
-        }
+      /* 🎯 Headings */
+      .form-heading {
+        color: #fff;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #fff, #e0e7ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmer 3s ease-in-out infinite;
       }
 
-      @keyframes floatAnim {
-        0% {
-          transform: translateY(0) rotate(0deg);
-          opacity: 0.6;
+      .form-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+      }
+
+      @keyframes shimmer {
+
+        0%,
+        100% {
+          opacity: 1;
         }
 
         50% {
-          transform: translateY(-20px) rotate(180deg);
-          opacity: 0.3;
-        }
-
-        100% {
-          transform: translateY(0) rotate(360deg);
-          opacity: 0.6;
+          opacity: 0.8;
         }
       }
 
+      /* 📝 Form Styles */
+      .form-group {
+        margin-bottom: 2rem;
+        position: relative;
+      }
+
+      label {
+        display: block;
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .form-control,
+      .custom-input {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .form-control::placeholder,
+      .custom-input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-control:focus,
+      .custom-input:focus {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .form-body {
+        width: 100%;
+        min-height: 200px;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        outline: none;
+        resize: vertical;
+        font-family: inherit;
+      }
+
+      .form-body::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-body:focus {
+        border-color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* 🚀 Submit Button */
+      .btn-submit {
+        width: 100%;
+        padding: 1.2rem 2rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 12px;
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-submit::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+        transition: left 0.5s;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-submit:hover::before {
+        left: 100%;
+      }
+
+      .btn-submit:active {
+        transform: translateY(-1px);
+      }
+
+      /* 📱 Responsive Design */
       @media (max-width: 768px) {
+        .container {
+          margin: 1rem;
+          padding: 2rem 1.5rem;
+        }
+
+        .form-heading {
+          font-size: 2rem;
+        }
+
+        .circle1 {
+          width: 120px;
+          height: 120px;
+        }
+
+        .circle2 {
+          width: 100px;
+          height: 100px;
+        }
+
+        .circle3 {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      @media (max-width: 480px) {
         .form-heading {
           font-size: 1.8rem;
         }
 
-        .background-wrapper .container {
-          padding: 1.2rem;
+        .form-subtitle {
+          font-size: 1rem;
+        }
+
+        .container {
+          padding: 1.5rem 1rem;
+        }
+      }
+
+      /* 🎨 Additional Glass Effects */
+      .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 100%);
+        border-radius: 20px;
+        z-index: -1;
+      }
+
+      /* ✨ Hover Effects for Form Groups */
+      .form-group:hover .form-control,
+      .form-group:hover .custom-input,
+      .form-group:hover .form-body {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* 🌟 Focus Ring Animation */
+      .form-control:focus,
+      .custom-input:focus,
+      .form-body:focus {
+        animation: focusGlow 2s ease-in-out infinite;
+      }
+
+      @keyframes focusGlow {
+
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        50% {
+          box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
       }
     </style>
 </head>
 
 <body>
+  <!-- Your navbar include goes here -->
   <%- include('./partials/nav') %>
-
     <div class="background-wrapper">
       <!-- ✨ Floating Circles -->
       <div class="circle circle1"></div>
@@ -221,7 +366,6 @@
               placeholder="Your blog title">
           </div>
 
-
           <div class="form-group">
             <label for="body">Body</label>
             <textarea name="body" class="form-body" id="body" placeholder="Write your blog..."></textarea>
@@ -234,6 +378,7 @@
       </div>
     </div>
 
+    <!-- Your scripts include goes here -->
     <%- include('./partials/script') %>
 </body>
 

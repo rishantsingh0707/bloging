@@ -1,180 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <%- include('./partials/head') %>
+<head><%- include('./partials/head') %>
         <title>Blog Dashboard</title>
         <style>
-            html,
             body {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             }
 
-            body {
-                font-family: 'Segoe UI', sans-serif;
-                background: linear-gradient(-45deg, #1a1a1a, #222, #1a1a1a, #000);
-                background-size: 400% 400%;
-                animation: gradientFlow 15s ease infinite;
-            }
-
-            .main-section {
-                min-height: 100vh;
-                padding: 4rem 1rem;
+            /* Main Section Styling */
+            /* .main-section {
                 position: relative;
-                overflow: hidden;
+                min-height: 100vh;
+                padding: 2rem 0;
+                overflow: visible;
+            } */
+
+            /* Floating Background Animation */
+            .floating-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 0 !important;
             }
 
-            .floating-bg .circle {
+            .circle {
                 position: absolute;
                 border-radius: 50%;
-                background: rgba(0, 123, 255, 0.35);
-                box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
-                animation: floatAnim 12s linear infinite;
-                z-index: 0;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                animation: float 6s ease-in-out infinite;
             }
 
             .circle1 {
-                width: 150px;
-                height: 150px;
+                width: 80px;
+                height: 80px;
                 top: 10%;
                 left: 10%;
                 animation-delay: 0s;
             }
 
             .circle2 {
-                width: 100px;
-                height: 100px;
-                bottom: 15%;
-                right: 15%;
+                width: 120px;
+                height: 120px;
+                top: 20%;
+                right: 10%;
                 animation-delay: 2s;
             }
 
             .circle3 {
-                width: 120px;
-                height: 120px;
-                top: 40%;
-                left: 60%;
+                width: 100px;
+                height: 100px;
+                bottom: 20%;
+                left: 20%;
                 animation-delay: 4s;
             }
 
             .circle4 {
-                width: 90px;
-                height: 90px;
-                bottom: 30%;
-                left: 25%;
-                animation-delay: 6s;
+                width: 60px;
+                height: 60px;
+                bottom: 10%;
+                right: 20%;
+                animation-delay: 1s;
             }
 
-            @keyframes floatAnim {
-                0% {
-                    transform: translateY(0) rotate(0deg);
+            @keyframes float {
+
+                0%,
+                100% {
+                    transform: translateY(0px) rotate(0deg);
                     opacity: 0.7;
                 }
 
                 50% {
-                    transform: translateY(-25px) rotate(180deg);
-                    opacity: 0.4;
-                }
-
-                100% {
-                    transform: translateY(0) rotate(360deg);
-                    opacity: 0.7;
+                    transform: translateY(-20px) rotate(180deg);
+                    opacity: 1;
                 }
             }
 
-            @keyframes gradientFlow {
-                0% {
-                    background-position: 0% 50%;
-                }
-
-                50% {
-                    background-position: 100% 50%;
-                }
-
-                100% {
-                    background-position: 0% 50%;
-                }
-            }
-
+            /* Container Styling */
             .container {
+                position: relative;
+                z-index: 2;
+                height: 150px !important;
+                width: 100% !important;
+            }
+
+            /* Card Styling with Glass Effect */
+            .card {
+                background: rgba(255, 255, 255, 0.15) !important;
+                backdrop-filter: blur(15px) !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                border-radius: 20px !important;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+                transition: all 0.3s ease !important;
+                margin-bottom: 2rem !important;
+                overflow: hidden !important;
+                position: relative;
+                min-height: 350px !important;
+                padding: 15px;
+                width: 600px !important;
+            }
+
+            .card::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s ease;
+                z-index: 1;
+            }
+
+            .card:hover::before {
+                left: 100%;
+            }
+
+            .card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 15px 40px rgba(187, 255, 0, 0.2);
+                border-color: rgba(255, 255, 255, 0.4);
+            }
+
+            /* Card Image Styling */
+            .card-img-top {
+                border-radius: 15px !important;
+                transition: transform 0.3s ease;
                 position: relative;
                 z-index: 2;
             }
 
-            .card {
-                background-color: rgba(30, 30, 30, 0.9);
-                width: 300px;
-                color: white;
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow: 0 0 20px rgb(35, 62, 218);
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                transition: transform 0.3s ease;
+            .card:hover .card-img-top {
+                transform: scale(1.05);
             }
 
-            .card:hover {
-                transform: translateY(-5px);
-            }
-
-            .card-img-top {
-                height: 200px;
-                object-fit: cover;
-            }
-
+            /* Card Body Styling */
             .card-body {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: 1rem;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                position: relative;
+                z-index: 2;
+                min-height: 100px !important;
+                border-radius: 15px;
             }
 
             .card-title {
-                font-size: 1.25rem;
-                margin-bottom: 0.75rem;
+                color: #fff !important;
+                font-weight: 600;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                margin-bottom: 1rem;
             }
 
-            .button-group {
-                margin-top: auto;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
+            /* Button Styling */
             .btn {
-                width: 100px;
-                border: none;
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                border-radius: 25px !important;
+                padding: 0.5rem 1.2rem !important;
+                font-weight: 500 !important;
+                transition: all 0.3s ease !important;
+                border: none !important;
+                position: relative;
+                overflow: hidden;
             }
 
-            .btn:hover {
-                transform: scale(1.05);
-                box-shadow: 0 0 12px rgba(13, 110, 253, 0.7);
+            .btn::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.3s ease;
             }
 
+            .btn:hover::before {
+                left: 100%;
+            }
+
+            .btn-primary {
+                background: linear-gradient(45deg, #667eea, #764ba2) !important;
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            }
+
+            .btn-danger {
+                background: linear-gradient(45deg, #ff6b6b, #ee5a52) !important;
+                box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            }
+
+            .btn-danger:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+            }
+
+            .btn-info {
+                background: linear-gradient(45deg, #4ecdc4, #44a08d) !important;
+                box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+            }
+
+            .btn-info:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(78, 205, 196, 0.6);
+            }
+
+            /* Row Styling */
+            .row {
+                gap: 1.5rem;
+                justify-content: center;
+            }
+
+            /* Responsive Design */
             @media (max-width: 768px) {
                 .row-cols-3 {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 1rem;
+                    row-gap: 2rem;
+                }
+
+                .card {
+                    width: 100% !important;
+                    max-width: 350px;
+                    margin: 0 auto 2rem auto !important;
+                }
+
+                .circle {
+                    opacity: 0.5;
                 }
             }
 
-            @media (min-width: 769px) {
-                .row-cols-3 {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 1.5rem;
+            /* Loading Animation for Cards */
+            .card {
+                animation: slideInUp 0.6s ease forwards;
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            .card:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .card:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .card:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            .card:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+            .card:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+
+            .card:nth-child(6) {
+                animation-delay: 0.6s;
+            }
+
+            @keyframes slideInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
                 }
+            }
+
+            /* SweetAlert Custom Styling */
+            .swal2-popup {
+                background: rgba(255, 255, 255, 0.95) !important;
+                backdrop-filter: blur(15px) !important;
+                border-radius: 20px !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            }
+
+            .swal2-title {
+                color: #333 !important;
+            }
+
+            .swal2-content {
+                color: #666 !important;
             }
         </style>
-        <!-- SweetAlert2 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 
 <body>
@@ -201,17 +318,17 @@
                                 <div class="d-flex flex-wrap gap-2 mt-auto">
                                     <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
 
-                                    <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST">
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form>
 
-                                    <% if (user && blog.createdBy._id.toString()===user._id.toString()) { %>
+                                    <% if (user && String(blog.createdBy?._id || blog.createdBy)===String(user._id)) {
+                                        %>
+                                        <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST">
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
                                         <a href="/blog/<%= blog._id %>/stats" class="btn btn-info">View Stats</a>
                                         <% } %>
                                 </div>
                             </div>
                         </div>
-
                         <% }) %>
                 </div>
             </div>
@@ -229,17 +346,17 @@
             <% } %>
 
                 <% if (error) { %>
- <script>
-  Swal.fire({
-    icon: 'error',
-    title: 'Login Failed',
-    text: '<%= error %>',
-    confirmButtonText: 'Close',
-    showConfirmButton: true,
-    showCloseButton: true
-  });
-</script>
-<% } %>
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed',
+                            text: '<%= error %>',
+                            confirmButtonText: 'Close',
+                            showConfirmButton: true,
+                            showCloseButton: true
+                        });
+                    </script>
+                    <% } %>
                         <%- include('./partials/script') %>
 </body>
 
