@@ -1,5 +1,4 @@
 <style>
-  /* Glass-like Animated Navbar CSS */
   .navbar {
     background: rgba(13, 17, 23, 0.85) !important;
     backdrop-filter: blur(20px);
@@ -11,7 +10,6 @@
     height: 90px;
   }
 
-  /* Animated background gradient */
   .navbar::before {
     content: "";
     position: absolute;
@@ -33,7 +31,6 @@
     }
   }
 
-  /* Enhanced navbar on scroll */
   .navbar.scrolled {
     background: rgba(13, 17, 23, 0.95) !important;
     backdrop-filter: blur(30px);
@@ -41,7 +38,6 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
-  /* Brand styling with glass effect */
   .navbar-brand {
     position: relative;
     z-index: 2;
@@ -59,7 +55,6 @@
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
   }
 
-  /* Navigation links with glass effect */
   .nav-link {
     position: relative;
     color: rgba(255, 255, 255, 0.9) !important;
@@ -98,7 +93,6 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  /* Dropdown styling */
   .dropdown-menu {
     background: rgba(13, 17, 23, 0.9) !important;
     backdrop-filter: blur(20px);
@@ -126,7 +120,6 @@
     width: 85% ;
   }
 
-  /* Navbar toggler with glass effect */
   .navbar-toggler {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
     background: rgba(255, 255, 255, 0.1);
@@ -144,7 +137,6 @@
     filter: brightness(0) invert(1);
   }
 
-  /* Floating orbs animation */
   .navbar::after {
     content: "";
     position: absolute;
@@ -170,7 +162,6 @@
     }
   }
 
-  /* Responsive enhancements */
   @media (max-width: 991.98px) {
     .navbar-collapse {
       background: rgba(13, 17, 23, 0.95);
@@ -187,14 +178,12 @@
     }
   }
 
-  /* Scroll behavior enhancement */
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
     }
   }
 
-  /* Add this class via JavaScript when page scrolls */
   .navbar.glass-enhanced {
     background: rgba(13, 17, 23, 0.98) !important;
     backdrop-filter: blur(40px);

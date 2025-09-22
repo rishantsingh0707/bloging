@@ -8,7 +8,6 @@
   <%- include('./partials/head') %>
 
     <style>
-      /* 🎨 Blog Form Glassmorphism Styles */
       * {
         margin: 0;
         padding: 0;
@@ -22,7 +21,6 @@
         overflow-x: hidden;
       }
 
-      /* 🌟 Background Wrapper */
       .background-wrapper {
         position: relative;
         min-height: 100vh;
@@ -32,7 +30,6 @@
             rgba(118, 75, 162, 0.1) 100%);
       }
 
-      /* ✨ Floating Circles */
       .circle {
         position: absolute;
         border-radius: 50%;
@@ -81,7 +78,6 @@
         }
       }
 
-      /* 📦 Container */
       .container {
         position: relative;
         z-index: 10;
@@ -108,7 +104,6 @@
         }
       }
 
-      /* 🎯 Headings */
       .form-heading {
         color: #fff;
         text-align: center;
@@ -142,7 +137,6 @@
         }
       }
 
-      /* 📝 Form Styles */
       .form-group {
         margin-bottom: 2rem;
         position: relative;
@@ -211,7 +205,6 @@
         transform: translateY(-2px);
       }
 
-      /* 🚀 Submit Button */
       .btn-submit {
         width: 100%;
         padding: 1.2rem 2rem;
@@ -255,7 +248,6 @@
         transform: translateY(-1px);
       }
 
-      /* 📱 Responsive Design */
       @media (max-width: 768px) {
         .container {
           margin: 1rem;
@@ -296,7 +288,6 @@
         }
       }
 
-      /* 🎨 Additional Glass Effects */
       .container::before {
         content: '';
         position: absolute;
@@ -311,7 +302,6 @@
         z-index: -1;
       }
 
-      /* ✨ Hover Effects for Form Groups */
       .form-group:hover .form-control,
       .form-group:hover .custom-input,
       .form-group:hover .form-body {
@@ -319,7 +309,6 @@
         background: rgba(255, 255, 255, 0.12);
       }
 
-      /* 🌟 Focus Ring Animation */
       .form-control:focus,
       .custom-input:focus,
       .form-body:focus {
@@ -341,15 +330,12 @@
 </head>
 
 <body>
-  <!-- Your navbar include goes here -->
   <%- include('./partials/nav') %>
     <div class="background-wrapper">
-      <!-- ✨ Floating Circles -->
       <div class="circle circle1"></div>
       <div class="circle circle2"></div>
       <div class="circle circle3"></div>
 
-      <!-- 💬 Blog Form -->
       <div class="container">
         <h2 class="form-heading">📝 Create Your Magical Blog</h2>
         <p class="form-subtitle">Share your thoughts, stories, and imagination with the world.</p>
@@ -378,7 +364,6 @@
       </div>
     </div>
 
-    <!-- Your scripts include goes here -->
     <%- include('./partials/script') %>
 </body>
 

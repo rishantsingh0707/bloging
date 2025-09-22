@@ -6,14 +6,12 @@
 </head>
 <title>Your Blog</title>
 <style>
-    /* Reset and Base Styles */
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
-    /* Animated Background */
     body {
         background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
         background-size: 400% 400%;
@@ -38,7 +36,6 @@
         }
     }
 
-    /* Floating Particles Background */
     body::before {
         content: '';
         position: fixed;
@@ -74,7 +71,6 @@
         }
     }
 
-    /* Container Styling */
     .container {
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(15px);
@@ -125,7 +121,6 @@
         }
     }
 
-    /* Blog Title Animation */
     h1 {
         font-size: 2.5rem;
         font-weight: 700;
@@ -169,7 +164,6 @@
         }
     }
 
-    /* Blog Image Styling */
     .blog-image-wrapper {
         position: relative;
         overflow: hidden;
@@ -218,7 +212,6 @@
         }
     }
 
-    /* Blog Body Styling */
     .blog-body {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9));
         padding: 30px;
@@ -245,7 +238,6 @@
         }
     }
 
-    /* Author Section */
     .d-flex.align-items-center {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 242, 247, 0.95));
         padding: 20px;
@@ -300,7 +292,6 @@
         }
     }
 
-    /* Comment Section */
     .comment-section {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
         backdrop-filter: blur(10px);
@@ -353,7 +344,6 @@
         }
     }
 
-    /* Form Controls */
     .form-control {
         background: rgba(255, 255, 255, 0.9);
         border: 2px solid rgba(102, 126, 234, 0.3);
@@ -376,7 +366,6 @@
         transform: translateY(-1px);
     }
 
-    /* Buttons */
     .btn {
         padding: 12px 25px;
         border-radius: 12px;
@@ -437,7 +426,6 @@
         }
     }
 
-    /* Comments Header */
     h3 {
         color: #333;
         font-size: 1.8rem;
@@ -476,7 +464,6 @@
         }
     }
 
-    /* Comment Boxes */
     .comment-box {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.95));
         backdrop-filter: blur(8px);
@@ -552,7 +539,6 @@
         padding: 0;
     }
 
-    /* Stats Container */
     #stats-container {
         background: linear-gradient(135deg, rgba(240, 242, 247, 0.95), rgba(255, 255, 255, 0.95));
         backdrop-filter: blur(10px);
@@ -579,7 +565,6 @@
         }
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
         .container {
             margin: 10px;
@@ -605,7 +590,6 @@
         }
     }
 
-    /* Accessibility */
     @media (prefers-reduced-motion: reduce) {
 
         *,
@@ -617,19 +601,16 @@
         }
     }
 
-    /* Focus States */
     *:focus {
         outline: 2px solid #667eea;
         outline-offset: 2px;
         border-radius: 4px;
     }
 
-    /* Smooth Scrolling */
     html {
         scroll-behavior: smooth;
     }
 
-    /* Loading States */
     .loading {
         animation: pulse 1.5s ease-in-out infinite;
     }
@@ -681,7 +662,6 @@
                     <button class="btn btn-primary">Add</button>
                 </form>
             </div>
-            <!-- Like Button -->
             <div class="container mt-3">
                 <form id="like-form" action="/blog/<%= blog._id %>/like" method="POST">
                     <button class="btn btn-outline-primary" type="submit">

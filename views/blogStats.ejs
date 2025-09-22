@@ -7,7 +7,6 @@
     </title>
     <%- include('./partials/head') %>
         <style>
-            /* Enhanced Blog Stats Page Styling with Glassmorphism */
 
             * {
                 margin: 0;
@@ -28,7 +27,6 @@
                 padding: 2rem 0;
             }
 
-            /* Enhanced Floating Circles */
             .circle {
                 position: absolute;
                 border-radius: 50%;
@@ -109,7 +107,6 @@
                 }
             }
 
-            /* Hero Section */
             .hero-section {
                 text-align: center;
                 margin-bottom: 3rem;
@@ -149,7 +146,6 @@
                 }
             }
 
-            /* Stats Container */
             .stats-container {
                 max-width: 900px;
                 margin: 0 auto;
@@ -176,7 +172,6 @@
                 }
             }
 
-            /* Blog Header */
             .blog-header {
                 text-align: center;
                 margin-bottom: 2.5rem;
@@ -210,7 +205,6 @@
                 color: white;
             }
 
-            /* Overview Section */
             .overview-section {
                 margin-bottom: 2.5rem;
             }
@@ -258,7 +252,6 @@
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             }
 
-            /* Stat Blocks */
             .stat-block {
                 background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(15px);
@@ -333,7 +326,6 @@
                 margin-left: 0.5rem;
             }
 
-            /* Navigation Section */
             .navigation-section {
                 text-align: center;
                 padding-top: 1.5rem;
@@ -376,7 +368,6 @@
                 color: white;
             }
 
-            /* Responsive Design */
             @media (max-width: 768px) {
                 .main-title {
                     font-size: 2.5rem;
@@ -433,28 +424,23 @@
 
 <body>
 
-    <!-- 🧩 Include your nav -->
     <%- include('./partials/nav') %>
 
         <div class="background-wrapper">
-            <!-- ✨ Enhanced Floating Circles -->
             <div class="circle circle1"></div>
             <div class="circle circle2"></div>
             <div class="circle circle3"></div>
-            <!-- Added more floating circles for better visual depth -->
             <div class="circle circle4"></div>
             <div class="circle circle5"></div>
             <div class="circle circle6"></div>
             <div class="circle circle7"></div>
 
-            <!-- Added hero section with enhanced headings -->
             <section class="hero-section">
                 <h1 class="main-title"> Blog Analytics Dashboard</h1>
                 <h2 class="subtitle">Comprehensive Performance Insights</h2>
             </section>
 
             <div class="stats-container">
-                <!-- Enhanced blog title section -->
                 <div class="blog-header">
                     <h2 class="blog-title">
                         <%= blog.title %>
@@ -467,7 +453,6 @@
                     </div>
                 </div>
 
-                <!-- Added overview section -->
                 <section class="overview-section">
                     <h2 class="section-title">📈 Performance Overview</h2>
                     <div class="overview-grid">
@@ -536,7 +521,6 @@
                             <% } %>
                 </div>
 
-                <!-- Enhanced navigation section -->
                 <section class="navigation-section">
                     <h3>Quick Actions</h3>
                     <div class="action-buttons">
