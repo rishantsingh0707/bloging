@@ -40,7 +40,7 @@ app.use(methodOverride("_method"));
 
 async function startServer() {
     try {
-        await mongoose.connect(process.env.MONGO_URL || "mongodb+srv://Rishant_Singh:Rishant1408@blogproject.tnluecy.mongodb.net/blogify?retryWrites=true&w=majority", {
+        await mongoose.connect("mongodb+srv://Rishant_Singh:Rishant1408@blogproject.tnluecy.mongodb.net/blogify?retryWrites=true&w=majority", {
             bufferCommands: false,
             serverSelectionTimeoutMS: 10000,
         });
